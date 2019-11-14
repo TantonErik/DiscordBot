@@ -1,0 +1,65 @@
+import discord
+import random
+
+
+TOKEN = 'NjQ0MDc0NjgzODg0NTAzMDUw.XcvEsA.wxTE2wOaLQ0Ibay36Z3cU97ji64'
+
+client = discord.Client()
+
+RandomTxt = [' piece of shit',' gay piece of shit',' cunt',' massive cuntasaurus','n honourable human being']
+RandomPerson = ['Kire','Krauts','Goose','Red','Sam','Salakron']
+
+@client.event
+async def on_message(message):
+    # we do not want the bot to reply to itself
+    if message.author == client.user:
+        return
+
+    elif message.content.startswith("!insult"):
+        msg = ('{0.author.mention} is a' + random.choice(RandomTxt)).format(message)
+        await client.send_message(message.channel, msg)
+    elif message.content.startswith("!cunthelp"):
+        msg = ('''
+        !insult: insults you with a random insult\n!twitch: lists all of the content creator's twitch account\n!fuck: the bot screams fuck at you\n!corn: shows the almighty cornhub\n!hmm: shows the meme "hmmm"\n!wiggle: shows the dragonair wiggle\n!beard: shows the beard cage\n!fedora: shows the fedora tipping gif\n!mods: shows a list of mods and admin\n!help: this
+        ''').format(message)
+        await client.send_message(message.channel, msg)
+    elif message.content.startswith("!twitch"):
+        msg = ("https://www.twitch.tv/kirenotnat/").format(message)
+        await client.send_message(message.channel, msg)
+        msg = ("https://www.twitch.tv/mister_kris/")
+        await client.send_message(message.channel, msg)
+        msg = ('https://www.twitch.tv/krautzsnail/').format(message)
+        await client.send_message(message.channel, msg)
+        msg = ('https://www.twitch.tv/samthekitnix/').format(message)
+        await client.send_message(message.channel, msg)
+    elif message.content.startswith("!fuck"):
+        msg = ('FUCK').format(message)
+        await client.send_message(message.channel, msg)
+    elif message.content.startswith("!corn"):
+        msg = ('http://corn-hub.blogspot.com/').format(message)
+        await client.send_message(message.channel, msg)
+    elif message.content.startswith("!hmm"):
+        msg = ('https://i.ytimg.com/vi/34xD6RrmD7w/hqdefault.jpg').format(message)
+        await client.send_message(message.channel, msg)
+    elif message.content.startswith("!wiggle"):
+        msg = ('https://cdn.discordapp.com/attachments/609288763776040996/644448316498640909/wiggle.gif').format(message)
+        await client.send_message(message.channel, msg)
+    elif message.content.startswith("!beard"):
+        msg = ('https://www.youtube.com/watch?v=wYi24D9lHqc').format(message)
+        await client.send_message(message.channel, msg)
+    elif message.content.startswith("!fedora"):
+        msg = ('https://tenor.com/view/mlady-nod-hey-hello-nice-gif-4816603').format(message)
+        await client.send_message(message.channel, msg)
+    elif message.content.startswith("!mods"):
+        msg = ('Admin: \nKirenotnat\nMr Kris\nMods:\nSamthekitnix').format(message)
+        await client.send_message(message.channel, msg)
+
+
+
+@client.event
+async def on_ready():
+    print('Logged in as')
+    print(client.user.name)
+    print(client.user.id)
+    print('------')
+client.run(TOKEN)
